@@ -6,30 +6,46 @@ from fake_useragent import UserAgent
 import base64
 
 class RandomUAMiddleware(object):
-    def __init__(self):
-        self.user_agent = UserAgent().random
 
     def process_request(self, request, spider):
-        request.headers['User-Agent'] = self.user_agent
+
+        request.headers['User-Agent'] = UserAgent().random
 
 class ProxyMiddleware(object):
-    def __init__(self, proxy_server, proxy_user, proxy_pass):
-        self.proxy_server = proxy_server
-        self.proxy_user = proxy_user
-        self.proxy_pass = proxy_pass
-        self.proxy_auth = "Basic " + base64.urlsafe_b64encode(bytes((self.proxy_user + ":" + self.proxy_pass), "ascii")).decode("utf8")
+    # 阿布云 Proxy
+    # def __init__(self, proxy_server, proxy_user, proxy_pass):
+    #     self.proxy_server = proxy_server
+    #     self.proxy_user = proxy_user
+    #     self.proxy_pass = proxy_pass
+    #     self.proxy_auth = "Basic " + base64.urlsafe_b64encode(bytes((self.proxy_user + ":" + self.proxy_pass), "ascii")).decode("utf8")
+    #
+    # @classmethod
+    # def from_crawler(cls, crawler):
+    #     return cls(
+    #         proxy_server = crawler.settings.get('PROXY_SERVER'),
+    #         proxy_user = crawler.settings.get('PROXY_USER'),
+    #         proxy_pass = crawler.settings.get('PROXY_PASS')
+    #     )
+    #
+    # def process_request(self, request, spider):
+    #     request.meta["proxy"] = self.proxy_server
+    #     request.headers["Proxy-Authorization"] = self.proxy_auth
 
-    @classmethod
-    def from_crawler(cls, crawler):
-        return cls(
-            proxy_server = crawler.settings.get('PROXY_SERVER'),
-            proxy_user = crawler.settings.get('PROXY_USER'),
-            proxy_pass = crawler.settings.get('PROXY_PASS')
-        )
-
+    # 蜻蜓Proxy
     def process_request(self, request, spider):
-        request.meta["proxy"] = self.proxy_server
-        request.headers["Proxy-Authorization"] = self.proxy_auth
+        proxyUser = "O0G71654325870702114"
+        proxyPass = "BPg09arvAf9D7yNT"
+        proxyHost = "dyn.horocn.com"
+        proxyPort = "50000"
+
+        request.meta['proxy'] = "http://%(user)s:%(pass)s@%(host)s:%(port)s" % {
+            "host": proxyHost,
+            "port": proxyPort,
+            "user": proxyUser,
+            "pass": proxyPass,
+        }
+
+
 
     def process_response(self, request, response, spider):
         return response

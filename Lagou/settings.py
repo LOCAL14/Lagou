@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import random
+
 
 BOT_NAME = 'Lagou'
 
@@ -11,9 +11,9 @@ NEWSPIDER_MODULE = 'Lagou.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 100
+CONCURRENT_REQUESTS = 16
 
-DOWNLOAD_DELAY = eval('%.1f'%random.random())
+DOWNLOAD_DELAY = 2 + eval('%.1f'%random.random())
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
@@ -41,9 +41,9 @@ DOWNLOAD_TIMEOUT = 10
 MAX_PAGES = 50
 
 # MYSQL SEETINGS
-MYSQL_HOST = 'localhost'
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = '123456'
+MYSQL_HOST = '39.106.19.252'
+MYSQL_USER = 'lagou'
+MYSQL_PASSWORD = 'root'
 MYSQL_DB = 'lagou'
 MYSQL_PORT = 3306
 
@@ -58,5 +58,5 @@ RECEIVE_LIST = ['northxw@qq.com', 'northxw@sina.com']
 
 # Abuyun_Proxy
 PROXY_SERVER = "http://http-dyn.abuyun.com:9020"
-PROXY_USER = "H8686H93Q18O3M3D"
-PROXY_PASS = "E868F2FAFC2B93BA"
+PROXY_USER = "H9315DUL0CEKK85D"
+PROXY_PASS = "9131BB43F7685204"

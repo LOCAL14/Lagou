@@ -50,8 +50,10 @@ class ExcelPipeline(object):
         self.wb = Workbook()
         # 激活工作表
         self.ws = self.wb.active
-        self.ws.append(['ID', 'PositionURL', 'PositionName', 'Salary', 'Avg_Salary', 'PublishTime', 'WorkYear', 'Education', 'JobNature',
-                        'Advantage', 'City', 'CompanyFullName', 'CompanyURL'])
+        self.ws.append(['ID', 'PositionURL', 'PositionName','FirstType','SecondType','ThirdType','PublishTime',
+                        'Salary', 'Avg_Salary', 'WorkYear', 'Education', 'JobNature',
+                        'Advantage', 'City','District','Latitude','Longitude', 'CompanyFullName', 'CompanyURL',
+                        'CompanyLogo','CompanyField','CompanySize','CompanyLabel','Famous'])
 
     def process_item(self, item, spider):
         datas = dict(item)
